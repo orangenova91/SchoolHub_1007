@@ -52,7 +52,7 @@ export function LoginForm() {
           <TabsContent value="student">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="student-email">이일</Label>
+                <Label htmlFor="student-email">이메일</Label>
                 <Input id="student-email" type="email" placeholder="student@school.edu" required />
               </div>
               <div className="space-y-2">
