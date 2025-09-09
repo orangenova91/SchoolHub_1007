@@ -6,7 +6,7 @@ export default function HomePage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">ClassroomHub</h1>
-          <p className="text-muted-foreground">학습 관리 플랫폼에 오신 것을 환영합니다</p>
+          <p className="text-muted-foreground">스쿨허브에 오신 것을 환영합니다</p>
         </div>
         <LoginForm />
       </div>
