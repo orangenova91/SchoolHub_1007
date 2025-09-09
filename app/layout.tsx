@@ -7,7 +7,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'SchoolHub',
   description: 'Created with v0',
-  generator: 'v0.app',
+  generator: 'schub',
 }
 
 export default function RootLayout({
