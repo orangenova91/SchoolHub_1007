@@ -15,9 +15,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navigation = [
     { name: "홈", href: "/dashboard", icon: Home, current: false },
-    { name: "내 강의실", href: "/classes", icon: BookOpen, current: false },
+    { name: "내 수업", href: "/classes", icon: BookOpen, current: false },
     { name: "과제", href: "/assignments", icon: FileText, current: false },
-    { name: "자료", href: "/files", icon: File, current: false },
+    { name: "파일", href: "/files", icon: File, current: false },
     { name: "성적", href: "/grades", icon: BarChart3, current: false },
     { name: "사람들", href: "/people", icon: Users, current: false },
     { name: "설정", href: "/settings", icon: Settings, current: false },

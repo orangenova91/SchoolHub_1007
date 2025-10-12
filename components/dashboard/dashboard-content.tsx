@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, FileText, Clock, Users, Plus } from "lucide-react"
 
-export function DashboardContent() {
+export async function DashboardContent() {
+  
   const recentClasses = [
     {
       id: 1,

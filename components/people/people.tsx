@@ -2,8 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, FileText, Clock, Users, Plus } from "lucide-react"
+import { MongoDB } from "../mongoDB/MongoDB";
 
-export function People() {
+
+export default async function People() {
+
+
+  let client = await { MongoDB };
+  const db = client.db('schoolhub_1004');
+  let result = await db.collection('test_db').find().toArray();
+  console.log(result)
+  
+
   const recentClasses = [
     {
       id: 1,
