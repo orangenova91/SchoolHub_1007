@@ -1,3 +1,4 @@
+// 1. 몽고DB 공식 문서 예제
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://orangenova91_db_user:6VV3rHFMoKQg6jT0@cluster0.dx79l5s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -29,21 +30,25 @@
 //MONGODB_URI="mongodb+srv://orangenova91_db_user:6VV3rHFMoKQg6jT0@cluster0.dx79l5s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
-import { MongoClient } from 'mongodb'
-// const url = process.env.MONGODB_URI
-const url = 'mongodb+srv://orangenova91_db_user:6VV3rHFMoKQg6jT0@cluster0.dx79l5s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-//const options = { useNewUrlParser: true }
-let MongoDB
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongo) {
-    global._mongo = new MongoClient(url).connect()
-  }
-  MongoDB = global._mongo
-} else {
-  MongoDB = new MongoClient(url, options).connect()
-}
-export { MongoDB }
+// 2. 애플 코딩 추천
+
+// import { MongoClient } from 'mongodb'
+// const url = process.env.MONGODB_URI
+// const options = { useNewUrlParser: true }
+// let MongoDB
+
+// if (process.env.NODE_ENV === 'development') {
+//   if (!global._mongo) {
+//     global._mongo = new MongoClient(url,options).connect()
+//   }
+//   MongoDB = global._mongo
+// } else {
+//   MongoDB = new MongoClient(url,options).connect()
+// }
+// export function MongoDB(){
+
+// }
 
 
 
