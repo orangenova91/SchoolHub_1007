@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { BookOpen, Home, FileText, Users, Settings, Bell, Menu, X, File, BarChart3 } from "lucide-react"
+import { BookOpen, Calendar, Home, FileText, Users, Settings, Bell, Menu, X, File, BarChart3 } from "lucide-react"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -15,6 +15,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navigation = [
     { name: "홈", href: "/dashboard", icon: Home, current: false },
+    { name: "학사일정", href: "/schoolcalendar", icon: Calendar, current: false },
     { name: "내 수업", href: "/classes", icon: BookOpen, current: false },
     { name: "과제", href: "/assignments", icon: FileText, current: false },
     { name: "파일", href: "/files", icon: File, current: false },
