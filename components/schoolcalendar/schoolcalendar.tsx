@@ -28,8 +28,19 @@ async function getSchedule(sheet = "학사일정") {
 }
 
 export async function Schoolcalendar() {
-  const rows = await getSchedule("학사일정");
+  const rows: Row[] = await getSchedule("학사일정");
 
+  // 👇 데이터를 가공하는 로직을 여기에 추가합니다.
+  const cleanedRows = rows.map(row => {
+    // 1. 객체를 [key, value] 쌍의 배열로 변환합니다.
+    const entries = Object.entries(row);
+
+    // 2. value가 빈 문자열("")이 아닌 항목만 남깁니다.
+    const filteredEntries = entries.filter(([key, value]) => value !== "");
+
+    // 3. 필터링된 [key, value] 쌍으로 새로운 객체를 만듭니다.
+    return Object.fromEntries(filteredEntries);
+  });
   if (!rows.length) {
     return <div className="p-6">학사일정 데이터가 없습니다.</div>;
   }
@@ -37,19 +48,18 @@ export async function Schoolcalendar() {
   // 동적 헤더(시트 1행)를 키로 사용
   const headers = Object.keys(rows[0]);
 
+    // const events = [
+    //     { title: '중간고사', start: '2025-10-27', end: '2025-10-31' },
+    //     { title: '가을 소풍', date: '2025-11-05' },
+    //     { title: '학부모 상담 주간', start: '2025-11-10', end: '2025-11-14', color: '#ff9f89' }
+    //   ];
 
-  const events = [
-        { title: '중간고사', start: '2025-10-27', end: '2025-10-31' },
-        { title: '가을 소풍', date: '2025-11-05' },
-        { title: '학부모 상담 주간', start: '2025-11-10', end: '2025-11-14', color: '#ff9f89' }
-      ];
 
   return (
     <div>
 
-      
-
-
+            
+      <CalendarClient events={cleanedRows} />
 
 
       <div className="p-6">
@@ -76,7 +86,6 @@ export async function Schoolcalendar() {
         </div>
       </div>
       <pre className="mt-6">{JSON.stringify(rows, null, 2)}</pre>
-      <CalendarClient events={events} />
     </div>
   );
 }

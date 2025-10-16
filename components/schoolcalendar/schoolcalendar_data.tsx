@@ -22,7 +22,11 @@ type EventInput = {
   color?: string;
 };
 
+
+
 export default function CalendarClient({ events }: { events: EventInput[] }) {
+
+
   return (
     <div className="p-6">
       <h1 className="text-xl font-semibold mb-4">학사일정</h1>
