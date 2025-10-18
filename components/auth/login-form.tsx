@@ -20,7 +20,7 @@ export function LoginForm() {
 
     setTimeout(() => {
       setIsLoading(false)
-      // TODO: Implement actual authentication
+      // TODO: Implement actual authentication(여기에 실제 백엔드 API를 호출하여 ID/PW를 검증하는 코드를 나중에 채워 넣어야 함을 명시해 줍니다.)
       window.location.href = "/dashboard"
     }, 1000)
   }
