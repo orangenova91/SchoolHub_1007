@@ -4,6 +4,7 @@ import { connectToDB } from "@/lib/mongodb";
 
 export async function GET(req: Request,{ params }: { params: { collection: string } })
    {
+    console.log("Requested collection:", params.collection);
       try {
         const { db } = await connectToDB();
         const { collection } = await params;
