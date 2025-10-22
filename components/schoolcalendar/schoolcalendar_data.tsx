@@ -1,5 +1,7 @@
 'use client'; //fullcalendar를 사용하기 위해 필요.
 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
 import dynamic from 'next/dynamic';
 
 // ✅ FullCalendar는 클라이언트에서만, SSR 비활성화
@@ -29,35 +31,13 @@ export default function CalendarClient({ events }: { events: EventInput[] }) {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-semibold mb-4">학사일정</h1>
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        headerToolbar={{
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
-        events={events}
-        editable
-        selectable
-        selectMirror
-        dayMaxEvents
-        weekends
-        dateClick={(info) => alert('선택한 날짜: ' + info.dateStr)}
-        eventClick={(info) => alert('선택한 이벤트: ' + info.event.title)}
-      />
-
-      {/* 디버깅용 단순 출력 */}
-      <pre className="mt-6">{JSON.stringify(events, null, 2)}</pre>
-
-
-
-        {/*테스트용 다른 버전*/}
+      <Card className="calendarContainer">
+        <div >
         <h1 className="text-xl font-semibold mb-4">학사일정</h1>
             <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="dayGridMonth" // 초기 뷰 설정 (월 단위)
+              height="80%" //사이즈 조정으로 추가된 부분
               headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
@@ -85,8 +65,8 @@ export default function CalendarClient({ events }: { events: EventInput[] }) {
                   {e.start ? `(${e.start} ~ ${e.end || e.start})` : e.date}
                 </li>
               ))}
-
-
+              </div>
+      </Card>
     </div>
   );
 }

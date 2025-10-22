@@ -1,4 +1,4 @@
-//import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 //import { Button } from "@/components/ui/button"
 //import { Badge } from "@/components/ui/badge"
 //import { BookOpen, FileText, Clock, Users, Plus } from "lucide-react"
@@ -18,9 +18,8 @@ async function fetchJSON(url: string, init?: RequestInit) {
   return resp.json();
 }
 
-async function getSchedule(sheet = "학사일정") {
-  //const base = process.env.NEXT_PUBLIC_BASE_URL;
-  //const url  = `${base}/api/sheets?sheet=${encodeURIComponent(sheet)}`;
+async function getSchedule() {
+  
   const url = process.env.GAS_BASE_URL;
 
   const json = await fetchJSON(url, { cache: "no-store" });
@@ -29,7 +28,7 @@ async function getSchedule(sheet = "학사일정") {
 }
 
 export async function Schoolcalendar() {
-  const rows: Row[] = await getSchedule("학사일정");
+  const rows: Row[] = await getSchedule();
 
   // 👇 데이터를 가공하는 로직을 여기에 추가합니다.
   const cleanedRows = rows.map(row => {
@@ -59,33 +58,37 @@ export async function Schoolcalendar() {
   return (
     <div>
 
-            
-      <CalendarClient events={cleanedRows} />
+          <CalendarClient events={cleanedRows} />
 
 
-      <div className="p-6">
-        <h1 className="text-xl font-semibold mb-4">학사일정</h1>
-        <div className="overflow-x-auto rounded-lg border">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="bg-gray-50">
-                {headers.map((h) => (
-                  <th key={h} className="px-3 py-2 text-left font-medium">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r, idx) => (
-                <tr key={idx} className="border-t">
-                  {headers.map((h) => (
-                    <td key={h} className="px-3 py-2">{String(r[h] ?? "")}</td>
+      <Card>
+      <CardContent>
+          <div className="p-6">
+            <h1 className="text-xl font-semibold mb-4">11학사일정</h1>
+            <div className="overflow-x-auto rounded-lg border">
+              <table className="min-w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50">
+                    {headers.map((h) => (
+                      <th key={h} className="px-3 py-2 text-left font-medium">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r, idx) => (
+                    <tr key={idx} className="border-t">
+                      {headers.map((h) => (
+                        <td key={h} className="px-3 py-2">{String(r[h] ?? "")}</td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </CardContent>   
+      </Card>
+
       <pre className="mt-6">{JSON.stringify(rows, null, 2)}</pre>
     </div>
   );
