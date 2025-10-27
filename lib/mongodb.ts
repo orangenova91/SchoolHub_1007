@@ -15,11 +15,15 @@ if (!global._mongo) {
 }
 
 export async function connectToDB() {
-  if (global._mongo?.db) return { client: global._mongo.client!, db: global._mongo.db! };
+  if (global._mongo?.db) 
+  return { client: global._mongo.client!, db: global._mongo.db! };
 
   const client = new MongoClient(uri, {
-    serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true },
+    serverApi: { version: ServerApiVersion.v1, 
+      strict: true, 
+      deprecationErrors: true },
   });
+
 
   await client.connect();
   const db = client.db(dbName);
