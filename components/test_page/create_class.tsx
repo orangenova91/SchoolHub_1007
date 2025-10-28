@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 // DB에서 가져온 데이터의 타입을 정의합니다. (오타 수정)
 type Curriculumn = {
@@ -18,7 +19,10 @@ type Curriculumn = {
   performanceExamRatio?: number;
 };
 
-export default function CreateSubject({ onClose }: { onClose: () => void }) {  // 1. 폼(form) 데이터를 위한 상태 변수 (이름 변경: CurriculumData -> formData)
+export default function CreateSubject({ onClose }: { onClose: () => void }) {  
+  const router = useRouter();
+  
+  // 1. 폼(form) 데이터를 위한 상태 변수 (이름 변경: CurriculumData -> formData)
   const [formData, setFormData] = useState({
     academicYear: new Date().getFullYear(),
     semester: '2',
@@ -116,35 +120,33 @@ export default function CreateSubject({ onClose }: { onClose: () => void }) {  /
 
 
 // ✨ 3. [핵심] 폼 제출을 처리할 handleSubmit 함수를 만듭니다.
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // 폼 제출 시 페이지가 새로고침되는 것을 방지
-    setIsSubmitting(true); // 제출 시작, 버튼 비활성화
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
 
-    try {
-      const response = await fetch('/api/db/create_subject', { // 데이터를 보낼 API 주소
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), // 폼 데이터를 JSON 문자열로 변환하여 전송
-      });
+  try {
+    const response = await fetch('/api/create_subject', { // 실제 API 경로로 변경
+      method: 'POST',
+      body: formData,
+    });
 
-      if (!response.ok) {
-        // 서버에서 에러 응답을 보냈을 경우
-        throw new Error('서버에서 오류가 발생했습니다.');
-      }
-
-      // 성공적으로 데이터를 전송했을 경우
-      alert('수업이 성공적으로 생성되었습니다!');
-      onClose(); // 부모로부터 받은 onClose 함수를 호출하여 모달을 닫습니다.
-
-    } catch (error) {
-      console.error('수업 생성 실패:', error);
-      alert('수업 생성에 실패했습니다. 다시 시도해주세요.');
-    } finally {
-      setIsSubmitting(false); // 제출 종료, 버튼 다시 활성화
+    if (!response.ok) {
+      // 서버가 보낸 구체적인 에러 메시지를 JSON 형태로 받음
+      const errorData = await response.json(); 
+      
+      // 서버가 보낸 메시지가 있다면 그것을, 없다면 기본 메시지를 에러로 던짐
+      throw new Error(errorData.message || '서버에서 알 수 없는 오류가 발생했습니다.');
     }
-  };
+
+    // 성공 로직
+    alert('성공적으로 처리되었습니다.');
+
+  } catch (error) {
+    console.error('폼 제출 실패:', error);
+    // 개선된 에러 메시지를 사용자에게 보여줌
+    alert((error as Error).message); 
+  }
+};
 
   return (
 <form onSubmit={handleSubmit} className="p-8 bg-white rounded-lg shadow-md max-w-xl mx-auto">      <h2 className="text-2xl font-bold mb-6">새로운 수업 만들기</h2>
