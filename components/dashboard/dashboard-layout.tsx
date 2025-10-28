@@ -23,6 +23,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "사람들", href: "/people", icon: Users, current: false },
     { name: "설정", href: "/settings", icon: Settings, current: false },
     { name: "test_page", href: "/test_page", icon: FileWarning, current: false },
+    { name: "test_page2", href: "/test_page2", icon: FileWarning, current: false },
   ]
 
   return (
