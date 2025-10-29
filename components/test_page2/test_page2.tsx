@@ -2,6 +2,7 @@
 'use client'; // 클라이언트 컴포넌트로 지정해야 합니다.
 
 import { useRouter } from 'next/navigation';
+import Testpage3 from './test_page2-1';
 
 export default function Testpage2() {
   const router = useRouter(); // 페이지 이동을 위한 훅
@@ -15,7 +16,7 @@ export default function Testpage2() {
 
     try {
       // 서버의 /api/post로 폼 데이터를 POST 요청으로 보냄
-      const response = await fetch('/api/test_page', {
+      const response = await fetch('/api/test_page2', {
         method: 'POST',
         body: formData,
       });
@@ -23,7 +24,7 @@ export default function Testpage2() {
       if (response.ok) {
         // 성공 시
         alert('게시글이 성공적으로 등록되었습니다.');
-        router.push('/test_page'); // 원하는 다른 페이지로 이동
+        router.push('/test_page2'); // 원하는 다른 페이지로 이동
       } else {
         // 실패 시
         alert('저장에 실패했습니다. 다시 시도해주세요.');
@@ -49,6 +50,7 @@ export default function Testpage2() {
         <input name="instructor" placeholder="강의자명 입력" />
         <button type="submit">버튼</button>
       </form>
+      <Testpage3/>
     </div>
   );
 }
