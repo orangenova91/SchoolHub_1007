@@ -24,6 +24,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "설정", href: "/settings", icon: Settings, current: false },
     { name: "test_page", href: "/test_page", icon: FileWarning, current: false },
     { name: "test_page2", href: "/test_page2", icon: FileWarning, current: false },
+    { name: "CRUD", href: "/notices", icon: FileWarning, current: false },
   ]
 
   return (

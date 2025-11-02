@@ -123,3 +123,392 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* ============================================== */
+/* 스쿨허브: 공지사항 폼 스타일 (수정/새글)         */
+/* ============================================== */
+
+/* 폼을 감싸는 전체 컨테이너 */
+.notice-form-wrapper {
+  padding: 20px;
+}
+
+/* 폼 제목 (h2) */
+.notice-form-title {
+  margin-bottom: 10px; /* 제목과 테이블 사이 여백 */
+  padding-bottom: 10px;
+  
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* 폼 테이블 (작성자, 제목, 내용) */
+.notice-form-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid #333;
+}
+
+/* 테이블 헤더 셀 (th) */
+.notice-form-table th {
+  background: #f9f9f9;
+  padding: 16px;
+  text-align: left;
+  width: 150px;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+}
+
+/* 테이블 데이터 셀 (td) */
+.notice-form-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 텍스트 입력 필드 (input) */
+.notice-form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* 텍스트 영역 (textarea) */
+.notice-form-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  min-height: 250px;
+  resize: vertical;
+  font-family: inherit; /* 폰트 통일 */
+  font-size: 1rem;
+}
+
+/* 버튼 컨테이너 (하단) */
+.notice-form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 기본 버튼 스타일 */
+.notice-form-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+}
+
+/* 취소 버튼 (보조) */
+.notice-form-button.cancel {
+  border: 1px solid #ccc;
+  color: #333;
+  background-color: white;
+}
+
+/* 제출 버튼 (주요) */
+.notice-form-button.submit {
+  background: #0070f3;
+  color: white;
+}
+
+/* 제출 버튼 비활성화 시 */
+.notice-form-button.submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* 로딩 메시지 */
+.loading-message {
+  padding: 20px;
+}
+
+/* ============================================== */
+/* (globals.css 하단에 이어서 추가)                 */
+/* ============================================== */
+
+/* 상세 페이지 본문 내용 스타일 */
+.notice-detail-content {
+  white-space: pre-wrap; /* 줄바꿈(\n)을 그대로 표시 */
+  padding: 16px 8px;    /* 폼의 td/th와 유사한 패딩 */
+  min-height: 200px;
+  border-bottom: 1px solid #ccc;
+  line-height: 1.6;
+}
+
+/* ============================================== */
+/* 스쿨허브: 공지사항 목록 스타일 (리스트)          */
+/* ============================================== */
+
+/* 목록 페이지 헤더 (제목 + 새 글 버튼) */
+.notice-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* .notice-form-title의 margin-bottom이 하단 여백을 만듭니다 */
+}
+
+/* (h2 제목은 .notice-form-title 클래스를 재사용합니다) */
+/* ('새 글 작성' 버튼은 .notice-form-button.submit 클래스를 재사용합니다) */
+
+/* 목록 테이블 */
+.notice-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* 헤더와의 여백 */
+}
+
+/* 목록 테이블 헤더 (th) */
+.notice-list-table th {
+  border-bottom: 2px solid #333;
+  padding: 12px 8px;
+  background: #f9f9f9;
+  font-weight: 600;
+  text-align: center; /* 기본 정렬: 중앙 */
+}
+
+/* 테이블 헤더 컬럼별 너비 및 정렬 */
+.notice-list-table th:nth-child(1) { width: 10%; } /* 번호 */
+.notice-list-table th:nth-child(2) { width: 50%; text-align: left; } /* 제목 (좌측) */
+.notice-list-table th:nth-child(3) { width: 15%; } /* 작성자 */
+.notice-list-table th:nth-child(4) { width: 15%; } /* 작성일 */
+.notice-list-table th:nth-child(5) { width: 10%; } /* 조회수 */
+
+/* 목록 테이블 데이터 (td) */
+.notice-list-table td {
+  border-bottom: 1px solid #eee;
+  padding: 12px 8px;
+  text-align: center; /* 기본 정렬: 중앙 */
+  vertical-align: middle;
+}
+
+/* 목록 테이블 행 호버 효과 */
+.notice-list-table tbody tr:hover {
+  background-color: #eeeeee;
+}
+
+/* 제목 셀 (좌측 정렬) */
+.notice-list-table td.title-cell {
+  text-align: left;
+}
+
+/* 제목 링크 스타일 */
+.notice-list-table a.title-link {
+  text-decoration: none;
+  color: #0070f3;
+  font-weight: 500;
+}
+.notice-list-table a.title-link:hover {
+  text-decoration: underline;
+}
+
+/* "데이터 없음" 셀 */
+.notice-list-table .no-data-cell {
+   padding: 40px 0;
+   color: #777;
+}
+
+/* ============================================== */
+/* 스쿨허브: 페이지네이션 스타일                    */
+/* ============================================== */
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px; /* 버튼과 텍스트 사이 간격 */
+}
+
+.pagination-controls span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.pagination-controls a {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.pagination-controls a:hover {
+  background-color: #f5f5f5;
+}
+
+/* 비활성화된 버튼 스타일 */
+.pagination-controls a.disabled {
+  color: #aaa;
+  border-color: #eee;
+  pointer-events: none; /* 클릭 비활성화 */
+  background-color: #f9f9f9;
+}
+/* ============================================== */
+/* 스쿨허브: 페이지네이션 스타일 (UPGRADED)         */
+/* ============================================== */
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px; /* '이전/다음'과 숫자 목록 사이 간격 */
+}
+
+/* '이전/다음' 버튼 (기존 스타일) */
+.pagination-controls a {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.pagination-controls a:hover {
+  background-color: #f5f5f5;
+}
+.pagination-controls a.disabled {
+  color: #aaa;
+  border-color: #eee;
+  pointer-events: none;
+  background-color: #f9f9f9;
+}
+
+/* ▼▼▼ [새로 추가된 스타일] ▼▼▼ */
+
+/* 숫자 페이지 목록을 감싸는 컨테이너 */
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 숫자 사이 간격 */
+}
+
+/* 페이지 번호 (Link or Span) */
+.page-number {
+  display: inline-block;
+  min-width: 36px; /* 고정 너비 */
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+/* ============================================== */
+/* 스쿨허브: 페이지네이션 스타일 (UPGRADED)         */
+/* ============================================== */
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px; /* '이전/다음'과 숫자 목록 사이 간격 */
+}
+
+/* '이전/다음' 버튼 (기존 스타일) */
+.pagination-controls a {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.pagination-controls a:hover {
+  background-color: #f5f5f5;
+}
+.pagination-controls a.disabled {
+  color: #aaa;
+  border-color: #eee;
+  pointer-events: none;
+  background-color: #f9f9f9;
+}
+
+/* ▼▼▼ [새로 추가된 스타일] ▼▼▼ */
+
+/* 숫자 페이지 목록을 감싸는 컨테이너 */
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 숫자 사이 간격 */
+}
+
+/* 페이지 번호 (Link or Span) */
+.page-number {
+  display: inline-block;
+  min-width: 36px; /* 고정 너비 */
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* '...' (Dots) 스타일 */
+.dots {
+  display: inline-block;
+  padding: 8px 0;
+  color: #aaa;
+}
+
+/* 현재 페이지 (Active) 스타일 */
+.page-number.active {
+  background-color: #0070f3; /* 파란색 배경 */
+  color: white;
+  border-color: #0070f3;
+  pointer-events: none; /* 현재 페이지는 클릭x */
+}
+
+/* 다른 페이지 호버 효과 */
+.page-number:not(.active):hover {
+  background-color: #f5f5f5;
+}
+
+/* ============================================== */
+/* 스쿨허브: 공지사항 검색 폼                       */
+/* ============================================== */
+
+.notice-search-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.notice-search-form form {
+  display: flex;
+  gap: 10px;
+}
+
+.notice-search-form input[type="text"] {
+  flex-grow: 1; /* 입력창이 남은 공간을 모두 차지 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* 검색 버튼은 기존 .notice-form-button.submit 스타일 재활용 */
