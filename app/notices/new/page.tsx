@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import Link from "next/link";
 
 export default function NewNoticePage() {
   const [title, setTitle] = useState<string>('');
@@ -28,8 +29,8 @@ export default function NewNoticePage() {
         throw new Error('Failed to create notice');
       }
 
-      router.push('/notices');
-      router.refresh(); 
+      router.push('/notices'); 
+      // router.refresh(); // 👈 이중 로드를 유발할 수 있으므로 제거 (push로 충분)
     } catch (error) {
       console.error(error);
       alert('공지사항 등록에 실패했습니다.'); // 사용자에게 피드백
@@ -39,126 +40,80 @@ export default function NewNoticePage() {
   };
 
   /* ================================================================ */
-  /* ▼▼▼ 일관성 있는 UI를 위한 인라인 스타일 추가 ▼▼▼ */
-  /* ================================================================ */
-  const tableStyle: React.CSSProperties = {
-    width: '100%',
-    borderCollapse: 'collapse',
-    borderTop: '2px solid #333',
-  };
-  const thStyle: React.CSSProperties = {
-    background: '#f9f9f9',
-    padding: '16px',
-    textAlign: 'left',
-    width: '150px', // 라벨 너비 고정
-    borderBottom: '1px solid #eee',
-  };
-  const tdStyle: React.CSSProperties = {
-    padding: '12px 16px', // 상하 12, 좌우 16
-    borderBottom: '1px solid #eee',
-  };
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '8px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    boxSizing: 'border-box', // 패딩이 너비에 포함되도록
-  };
-  const textareaStyle: React.CSSProperties = {
-    ...inputStyle, // 기본 input 스타일 상속
-    minHeight: '250px',
-    resize: 'vertical', // 수직 크기 조절만 허용
-  };
-  const buttonContainerStyle: React.CSSProperties = {
-    marginTop: '20px',
-    textAlign: 'right', // 버튼을 우측으로 정렬
-  };
-  const submitButtonStyle: React.CSSProperties = {
-    padding: '10px 20px',
-    background: '#0070f3',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '16px',
-  };
-  /* ================================================================ */
-  /* ▲▲▲ 스타일 추가 완료 ▲▲▲ */
+  /* ▼▼▼ 인라인 스타일 모두 제거됨 ▼▼▼ */
   /* ================================================================ */
 
   return (
     <DashboardLayout>
-      {/* 폼 전체를 감싸는 div 추가 */}
-      <div style={{ padding: '20px' }}>
+      {/* 1. 폼 전체 래퍼 클래스 적용 */}
+      <div className="notice-form-wrapper">
         <form onSubmit={handleSubmit}>
-          <h2>공지사항 작성</h2>
+          
+          {/* 2. 폼 제목 클래스 적용 */}
+          <h2 className="notice-form-title"><Link href="/notices">공지사항</Link></h2>
 
-          {/* ================================================================ */}
-          {/* ▼▼▼ 이 부분이 <div>에서 <table> 태그로 변경되었습니다. ▼▼▼ */}
-          {/* ================================================================ */}
-          <table style={tableStyle}>
+          {/* 3. 폼 테이블 클래스 적용 */}
+          <table className="notice-form-table">
             <tbody>
               {/* 작성자 행 */}
               <tr>
-                <th style={thStyle}>
+                {/* 4. th/td는 table 클래스가 자동 적용 (클래스 불필요) */}
+                <th>
                   <label htmlFor="author">작성자</label>
                 </th>
-                <td style={tdStyle}>
+                <td>
                   <input
                     id="author"
                     type="text"
                     value={author}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value)}
                     required
-                    style={inputStyle}
+                    className="notice-form-input" /* 5. input 클래스 */
                   />
                 </td>
               </tr>
               
               {/* 제목 행 */}
               <tr>
-                <th style={thStyle}>
+                <th>
                   <label htmlFor="title">제목</label>
                 </th>
-                <td style={tdStyle}>
+                <td>
                   <input
                     id="title"
                     type="text"
                     value={title}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                     required
-                    style={inputStyle}
+                    className="notice-form-input"
                   />
                 </td>
               </tr>
               
               {/* 내용 행 */}
               <tr>
-                <th style={thStyle}>
+                <th>
                   <label htmlFor="content">내용</label>
                 </th>
-                <td style={tdStyle}>
+                <td>
                   <textarea
                     id="content"
                     value={content}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
                     required
-                    style={textareaStyle}
+                    className="notice-form-textarea" /* 6. textarea 클래스 */
                   />
                 </td>
               </tr>
             </tbody>
           </table>
-          {/* ================================================================ */}
-          {/* ▲▲▲ 테이블로 변경 완료 ▲▲▲ */}
-          {/* ================================================================ */}
-
-          {/* 등록하기 버튼 */}
-          <div style={buttonContainerStyle}>
+          
+          {/* 7. 버튼 컨테이너 클래스 (오른쪽 정렬 helper 추가) */}
+          <div className="notice-form-actions right-align">
             <button 
               type="submit" 
               disabled={isSubmitting} 
-              style={submitButtonStyle}
+              className="notice-form-button submit" /* 8. 버튼 클래스 */
             >
               {isSubmitting ? '등록 중...' : '등록하기'}
             </button>
